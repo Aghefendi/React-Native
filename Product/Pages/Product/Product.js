@@ -8,13 +8,15 @@ import Error from '../../Component/Error';
 
 const apiUrl = process.env.EXPO_PUBLIC_API_URL;
 
-const Product = () => {
+const Product = ({navigation}) => {
 
 const {loading,error,data}=useFetch(apiUrl);
 
+const handleProductSelect=(id)=>{
+  navigation.navigate('DetailsPage',{id});
+}
 
-
-const renderProduct =({item})=><ProductCard product={item}/> ;
+const renderProduct =({item})=><ProductCard product={item} onSelect={()=>handleProductSelect(item.id)}/> ;
 
 if(loading){return <Loading />;}
 if(error){return <Error />;}
@@ -32,7 +34,7 @@ if(error){return <Error />;}
       
       />
     </View>
-  );
+  )
 };
 
 export default Product;
