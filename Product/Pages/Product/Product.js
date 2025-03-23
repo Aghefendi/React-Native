@@ -1,25 +1,23 @@
-import { Text, View, FlatList } from 'react-native';
+import { Text, View, FlatList,ActivityIndicator } from 'react-native';
 import React, { useEffect,useState } from 'react';
 import styles from './ProductCs';
 import ProductCard from '../../Component/ProductCard';
-import axios from 'axios';
+import useFetch from '../../hooks/useFetch/useFetch';
 
 const apiUrl = process.env.EXPO_PUBLIC_API_URL;
 
 const Product = () => {
 
-const [data, setdata] = useState([]);
-useEffect(()=>{fetctData();},[]);
-
-const fetctData= async()=>{
- const {data:productData}= await axios.get(apiUrl);
- setdata(productData);
+const {loading,error,data}=useFetch(apiUrl);
 
 
-}
 
 const renderProduct =({item})=><ProductCard product={item}/> ;
-  return (
+
+if(loading){return <ActivityIndicator size="large"/>;}
+if(error){return <Text>{error}</Text>;}
+
+ return (
     <View style={styles.container}>
       <FlatList 
       
