@@ -2,19 +2,13 @@ import { StyleSheet } from "react-native";
 
 export default styles = StyleSheet.create({
   container: {
-    flex: 1,
-    
-    alignItems: "center",
-    justifyContent: "center",
+  
+   flex: 1,
+   justifyContent: 'center',
+   alignItems: 'center',
+   backgroundColor: '#f5fcff',
+   padding: 16,
   },
-  Imagecs:{
-    width:200,
-    height:200,
-    borderRadius:100,
-  },
-  title:{
-    fontSize:20,
-    fontWeight:'bold',
-  },
+
 
 });

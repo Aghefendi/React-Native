@@ -1,9 +1,8 @@
 import React from "react";
 import { View, FlatList, Text, ActivityIndicator } from "react-native";
-import CategoryCard from "../../Component/CategoryCard";
 import useFetch from "../../hook/useFetch";
 import styles from "./CategoryCs";
-import Details from "../Details/Details";
+import CategoryCard from "../../Component/Categorycard/CategoryCard";
 
 
 // API URL
@@ -12,7 +11,7 @@ const api = 'https://www.themealdb.com/api/json/v1/1/categories.php';
 const Category = ({navigation}) => {
   // Fetching data using the custom hook
   const { data, loading, error } = useFetch(api);
-
+  const data1=data.categories;
   // Handling the loading state
   if (loading) {
     return (
@@ -41,7 +40,7 @@ const Category = ({navigation}) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={data}
+        data={data1}
         renderItem={RenderCategory}
         
       />

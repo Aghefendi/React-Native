@@ -9,7 +9,7 @@ function useFetch(url) {
   const fetchData = async () => {
     try {
       const { data: responseData } = await axios.get(url);
-      setData(responseData.categories); // Assuming the API returns a 'categories' field
+      setData(responseData); // Assuming the API returns a 'categories' field
     } catch (error) {
       setError(error); // Set error if there was an issue
       console.log(error);
@@ -20,7 +20,7 @@ function useFetch(url) {
 
   useEffect(() => {
     fetchData(); // Fetch data when the component mounts
-  }, []); // Ensure it only runs on component mount or if URL changes
+  }, [url]); // Ensure it only runs on component mount or if URL changes
 
   return { data, loading, error };
 }
