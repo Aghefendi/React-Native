@@ -1,47 +1,52 @@
-import styles  from "./CategoryCs";
-import {React,useState,useEffect} from "react";
-import { View, Text,FlatList } from "react-native";
+import React from "react";
+import { View, FlatList, Text, ActivityIndicator } from "react-native";
 import CategoryCard from "../../Component/CategoryCard";
-import axios from "axios";
-
-const Category = () => {
-    const [data, setData] = useState([]);
-
-    const fetchData =async () => {
-        
-        try {
-            const response= await  axios.get('https://www.themealdb.com/api/json/v1/1/categories.php');
-            
-            setData(response.data.categories);
-            
-           
-        } catch (error) {
-
-            console.log(error);
-        }
-     
-       
-    };
- 
-    useEffect(() => {
-        fetchData();
-      }, []);
+import useFetch from "../../hook/useFetch";
+import styles from "./CategoryCs";
+import Details from "../Details/Details";
 
 
-const RenderCategory = ({item}) => {
+// API URL
+const api = 'https://www.themealdb.com/api/json/v1/1/categories.php';
+
+const Category = ({navigation}) => {
+  // Fetching data using the custom hook
+  const { data, loading, error } = useFetch(api);
+
+  // Handling the loading state
+  if (loading) {
     return (
-        <CategoryCard category={item}/>
-    )};
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
+
+  // Handling error if something goes wrong
+  if (error) {
+    return (
+      <View style={styles.container}>
+        <Text>Error fetching data: {error.message}</Text>
+      </View>
+    );
+  }
+  const handleProductSelect=(id)=>{
+    navigation.navigate('Details',{strCategory:id});
+  }
+
+  const RenderCategory = ({ item }) => {
+    return <CategoryCard category={item} onSelect={()=>handleProductSelect(item.strCategory)}/>;
+  };
+
   return (
-  
     <View style={styles.container}>
-       <FlatList
-       data={data}
-       renderItem={RenderCategory}  
-       keyExtractor={(item)=>item.idCategory}
-       
-       />
-     </View>
+      <FlatList
+        data={data}
+        renderItem={RenderCategory}
+        
+      />
+    </View>
   );
-}
+};
+
 export default Category;
