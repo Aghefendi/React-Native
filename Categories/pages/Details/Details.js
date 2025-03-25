@@ -1,9 +1,10 @@
 import { StyleSheet, Text, View,ActivityIndicator, Image, FlatList } from 'react-native'
 import React from 'react'
 import useFetch from '../../hook/useFetch';
+import MealCard from '../../Component/MealCard';
 
 
-const Details = ({route}) => {
+const Details = ({route,navigation}) => {
   const {strCategory} = route.params;
   
 
@@ -32,23 +33,20 @@ const Details = ({route}) => {
         </View>
       );
     }
-  
 
+    handleProductSelected=(id)=>{
+      navigation.navigate('Meal',{strMeal:id});
+    }
+  
+    const MealRender = ({item}) => {return <MealCard item={item} onSelected={()=>handleProductSelected(item.strMeal)}/>} ;
   return (
-    <View style={styles.container}>
+    
       <FlatList 
         data={data1}
-        renderItem={({item})=>(
-          <View style={styles.card}>
-            <Image source={{uri:item.strMealThumb}} style={styles.image}/>
-            <Text style={styles.text}>{item.strMeal}</Text>
-          </View>
-        )}
-      />
+        renderItem={MealRender} />
         
         
-        </View>
-
+    
 
     
       
