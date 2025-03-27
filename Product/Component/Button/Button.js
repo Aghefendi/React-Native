@@ -1,11 +1,14 @@
-import { TouchableOpacity, Text, View } from 'react-native'
+import { TouchableOpacity, Text, View, ActivityIndicator } from 'react-native'
 import React from 'react'
 import styles from './ButtonCs'
+import Loading from '../Loading'
 
-const Button = ({text,onPress}) => {
+const Button = ({text,onPress,loading}) => {
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Text style={{textAlign:'center',fontSize:15,fontWeight:'bold'}}>{text}</Text>
+    <TouchableOpacity style={styles.container} onPress={onPress} disabled={loading}>
+      {loading ? (<ActivityIndicator size={'large'} />):
+      (<Text style={{textAlign:'center',fontSize:15,fontWeight:'bold'}}>{text}</Text>)
+        } 
     </TouchableOpacity>
   )
 }

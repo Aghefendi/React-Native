@@ -12,8 +12,8 @@ const Stack=createNativeStackNavigator();
 const Root = () => {
   return (
    <NavigationContainer>
-    <Stack.Navigator screenOptions={{headerShown:true}}>
-      <Stack.Screen name= 'LoginPage' component={Login} options={{title:'Login',headerTitleAlign:'center',headerStyle:{backgroundColor:'lightgray',headerShown:false}}}/>
+    <Stack.Navigator  screenOptions={{headerShown:true} }>
+      <Stack.Screen   name= 'LoginPage' component={Login} options={{title:'Login',headerTitleAlign:'center',headerStyle:{backgroundColor:'lightgray',headerShown:false}}}/>
         <Stack.Screen name='ProductPAge' component={Product} options={{title:'Dükkan', headerTitleAlign:'center',headerStyle:{backgroundColor:'lightgray'},
       
         headerTitleStyle:{color:'white',fontSize:20},

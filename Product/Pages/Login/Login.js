@@ -3,16 +3,43 @@ import { Text, View, Image, Alert, VirtualizedList } from 'react-native';
 import Input from '../../Component/Input';
 import Button from '../../Component/Button';
 import { Formik } from 'formik';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import usePost from '../../hooks/usePost/usePost';
 
 
 
-const Login = () => {
+const apiUrlm = process.env.EXPO_PUBLIC_API_AUTH;
 
-    function handleLogin(values){
-       console.log(values);
+const Login = ({ navigation }) => {
+    const { data, loading, error, post } = usePost();
+    
+    function handleLogin(values) {
+        post(apiUrlm + '/login', values);
+        
     }
-  
+
+    // Handle error state and display alert
+    if (error) {
+        Alert.alert("Bir hata oluştu");
+    }
+    
+    if(data&&!loading){
+            if(data.status==='Error'){
+                
+                Alert.alert("Kullanıcı bulunamadı")
+            }
+            else{
+                
+
+                navigation.navigate('ProductPAge')
+            }
+
+
+
+    }
+
+    // Check if we should navigate after data has been received
+    
+
     
     return (
         
