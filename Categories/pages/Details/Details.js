@@ -4,6 +4,7 @@ import useFetch from '../../hook/useFetch';
 import MealCard from '../../Component/MealCard';
 
 
+
 const Details = ({route,navigation}) => {
   const {strCategory} = route.params;
   
@@ -41,7 +42,8 @@ const Details = ({route,navigation}) => {
     const MealRender = ({item}) => {return <MealCard item={item} onSelected={()=>handleProductSelected(item.strMeal)}/>} ;
   return (
     
-      <FlatList 
+      <FlatList  
+      
         data={data1}
         renderItem={MealRender} />
         

@@ -11,7 +11,7 @@ const Meal = ({route}) => {
     const { data, loading, error } = useFetch(api);
 
   const data1=data.meals;
-  console.log(data1);
+  
 
    if (loading) {
       return (
@@ -40,7 +40,7 @@ const Meal = ({route}) => {
         renderItem={({item})=>(
             <View style={styles.container}>
                 <Image source={{uri:item.strMealThumb}} style={styles.image}/>
-                <Text style={styles.text}>{item.strMeal}</Text>
+                <Text style={styles.text1}>{item.strMeal}</Text>
                 <Text style={styles.text}>{item.strInstructions}</Text>
                 <Button title="Watch Videos"  onPress={() => handleWatchVideo(item.strYoutube)}/>
             </View>

@@ -2,20 +2,33 @@ import { StyleSheet } from "react-native";
 
 export default styles = StyleSheet.create({
   container: {
-    flex: 1,
+   
+    
     backgroundColor: 'yellow',
+    borderRadius:10,
+    margin:20,
+    padding:20,
+    borderWidth:1
+
+
  
     
   },    
   image:{
-    width: 400,
-    height: 400,
+    width: 200,
+    minHeight: 200,
    resizeMode:'contain',
     
-    resizeMode: 'cover',
+   
+
+    
+   
   },
     text:{
         fontSize:15,
+        color:'red',
+        fontWeight:'bold',
+
        
     }
 
