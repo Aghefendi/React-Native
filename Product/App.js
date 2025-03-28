@@ -1,8 +1,15 @@
-
-import Root from './Navigator/Root';
+import AuthProvider from './Context/AuthProvider'
+import Root from './Navigator/Root'
 
 export default function App() {
-  return <Root/>
+  return (
+
+
+    <AuthProvider>
+
+    <Root/>
+</AuthProvider>
+  )
 }
 
 

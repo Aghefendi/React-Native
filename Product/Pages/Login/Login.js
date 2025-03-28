@@ -3,7 +3,10 @@ import { Text, View, Image, Alert, VirtualizedList } from 'react-native';
 import Input from '../../Component/Input';
 import Button from '../../Component/Button';
 import { Formik } from 'formik';
+import { useDispatch } from 'react-redux';
 import usePost from '../../hooks/usePost/usePost';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 
 
@@ -11,6 +14,7 @@ const apiUrlm = process.env.EXPO_PUBLIC_API_AUTH;
 
 const Login = ({ navigation }) => {
     const { data, loading, error, post } = usePost();
+    const dispact=useDispatch();
     
     function handleLogin(values) {
         post(apiUrlm + '/login', values);
@@ -28,7 +32,7 @@ const Login = ({ navigation }) => {
                 Alert.alert("Kullanıcı bulunamadı")
             }
             else{
-                
+                dispact({type:'SET_USER' , payload:{user}});
 
                 navigation.navigate('ProductPAge')
             }
@@ -65,3 +69,10 @@ const Login = ({ navigation }) => {
     }
 
     export default Login;
+    
+    const user={
+
+
+     username:'johnd',
+     password:'m38rmF$'
+    }

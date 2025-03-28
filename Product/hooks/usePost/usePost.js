@@ -10,9 +10,7 @@ function usePost(){
     const post = async (url, apiData) => {
         try {
             setLoading(true); // Set loading to true when the request starts
-            const { data: responseData } = await axios.post(url, apiData, { 
-                headers: { "Content-Type": "application/json" }
-            });
+            const { data: responseData } = await axios.post(url, apiData);
             setData(responseData);
         } catch (error) {
             setError(error);
