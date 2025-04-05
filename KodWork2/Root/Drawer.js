@@ -9,7 +9,7 @@ const Drawer = () => {
     const Drawer = createDrawerNavigator();
   return (
     <Drawer.Navigator>
-        <Drawer.Screen name="Job" component={Stacker} />
+        <Drawer.Screen name="Jobs" component={Stacker} />
         <Drawer.Screen name="Favori" component={Favori} />
     </Drawer.Navigator>
   )
