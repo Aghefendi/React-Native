@@ -1,17 +1,19 @@
-import { View, Text } from 'react-native'
+import { View, Text,TouchableOpacity } from 'react-native'
 import React from 'react'
 import styles from './CardCs'
 
-const Card = ({item}) => {
+const Card = ({item,HandleonPress}) => {
     
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{item.name}</Text>
-      <Text>{item.levels[0].name}</Text>
-      <Text >{item.locations[0].name}</Text>
-      <Text style={styles.title}>{item.company.name}</Text>
+      <TouchableOpacity onPress={()=>{HandleonPress(item.id)}}>
+      <Text style={styles.name}>{item.name}</Text>
+      
+      <Text style={styles.location}>{item.locations[0].name}</Text>
+      <Text style={styles.company}>{item.company.name}</Text>
+      <Text style={styles.level}>{item.levels[0].name}</Text>
      
-     
+     </TouchableOpacity>
     </View>
   )
 }
