@@ -1,14 +1,19 @@
-import { View, Text,FlatList } from 'react-native'
+import { View, Text,FlatList,Dimensions,ScrollView } from 'react-native'
 import React from 'react'
 import styes from './DetailCs'
 import useFetch from '../../Hooks/useFetch'
+import RenderHTML from 'react-native-render-html'
+
 
 const Detail = ({route,navigation}) => {
 
+  const { width } = Dimensions.get('window')
+
   const { id } = route.params
+ 
   const apiUrl = `https://www.themuse.com/api/public/jobs/${id}`
   const { data, error, loading } = useFetch(apiUrl)
-  console.log(data)
+
   if (loading) {
     return (
       <View>
@@ -23,19 +28,15 @@ const Detail = ({route,navigation}) => {
     return <Text>No data found</Text>
   }
   
+  const content=data.contents
+  console.log(content)
   return (
-    <View style={styes.container}>
-      <FlatList
-      data={data}
-      renderItem={({item}) => (
-        <View style={{flex:1,alignItems:'center',justifyContent:'center'}}>
-          <Text>{item.name}</Text>
-        
-        </View>
-      )}
-      
-      />
-    </View>
+    <ScrollView style={styes.container}>  
+    <RenderHTML contentWidth={width} source={{html: content}} />
+   
+ 
+
+    </ScrollView>
   )
 }
 
