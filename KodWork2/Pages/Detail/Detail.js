@@ -1,8 +1,12 @@
 import { View, Text,FlatList,Dimensions,ScrollView } from 'react-native'
 import React from 'react'
-import styes from './DetailCs'
+import styles from './DetailCs'
 import useFetch from '../../Hooks/useFetch'
 import RenderHTML from 'react-native-render-html'
+import DetailHeader from '../../Component/DetailHeader'
+import DetailFooter from '../../Component/DetailFooter'
+
+
 
 
 const Detail = ({route,navigation}) => {
@@ -27,16 +31,27 @@ const Detail = ({route,navigation}) => {
   if (!data) {
     return <Text>No data found</Text>
   }
+
+  
   
   const content=data.contents
-  console.log(content)
-  return (
-    <ScrollView style={styes.container}>  
-    <RenderHTML contentWidth={width} source={{html: content}} />
-   
  
+  return (
+   <View>
+    <ScrollView style={styles.scroll}>
+    <DetailHeader  data={data}/>
+ 
+ 
+    <RenderHTML contentWidth={width} source={{html: content}} style={styles.renderCs} />
 
+    <DetailFooter/>
+ 
     </ScrollView>
+    
+    </View>
+   
+  
+   
   )
 }
 
